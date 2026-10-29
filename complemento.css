@@ -21,3 +21,16 @@ p {
     line-height: 1.6;
     
 }
+ol {
+    max-width: 600px;
+    margin: 15px auto;
+    text-align: center;
+    line-height: 1.6;   
+
+}
+ul{
+    max-width: 600px;
+    text-align: center;
+    margin: 15px auto;
+    line-height: 1.6;
+}
