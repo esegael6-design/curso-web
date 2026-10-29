@@ -1,0 +1,23 @@
+body {
+    background-color: #b1843c; /*fondo color crema calido*/
+    color: #6b1c0e
+}
+h1 {
+    text-align: center;
+}
+button{
+    display: block;
+    margin: 20px auto;
+    background-color: #a0321f8c;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-size: 18px;
+    cursor: pointer;
+}
+p {
+    max-width: 600px; /*evitar que las lineas se estiren por toda  la pagina*/
+    margin: 15px auto; /*centra el bloqueo del parrafo en pantalla*/
+    text-align: center;
+    line-height: 1.6;
+    
+}
