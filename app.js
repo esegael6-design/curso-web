@@ -1,25 +1,30 @@
-// Precios de referencia de los productos
+// Precios del menú
 const precios = {
     'Espresso Intenso': 45.00,
     'Latte Vainilla': 60.00,
     'Capuccino Canela': 55.00
 };
 
-// Cargar orden previa de localStorage o iniciar con un arreglo vacío
+// Cargar orden previa desde localStorage
 let orden = JSON.parse(localStorage.getItem('ordenCafeteria')) || [];
 
-// Elementos del DOM
+// Referencias a elementos del DOM
 const listaOrden = document.getElementById('listaOrden');
 const totalTexto = document.getElementById('totalTexto');
 const btnVaciar = document.getElementById('btnVaciar');
+const btnAbrirModal = document.getElementById('btnAbrirModal');
+const modalConfirmar = document.getElementById('modalConfirmar');
+const btnCerrarModal = document.getElementById('btnCerrarModal');
+const resumenModalTexto = document.getElementById('resumenModalTexto');
 
-// Función para actualizar y dibujar la lista de pedidos en el DOM
+// Dibujar la orden en pantalla
 function renderizarOrden() {
+    if (!listaOrden || !totalTexto) return;
     listaOrden.innerHTML = '';
-    let totalAcumulado = 0;
+    let total = 0;
 
     orden.forEach((item, index) => {
-        totalAcumulado += item.precio;
+        total += item.precio;
 
         const li = document.createElement('li');
         li.innerHTML = `
@@ -29,24 +34,24 @@ function renderizarOrden() {
         listaOrden.appendChild(li);
     });
 
-    totalTexto.textContent = `Total: $${totalAcumulado.toFixed(2)}`;
+    totalTexto.textContent = `Total: $${total.toFixed(2)}`;
     localStorage.setItem('ordenCafeteria', JSON.stringify(orden));
 }
 
-// Función para ordenar un producto desde los botones de las tarjetas
-window.ordenar = function(nombreProducto) {
-    const precio = precios[nombreProducto] || 0;
-    orden.push({ nombre: nombreProducto, precio: precio });
+// Agregar café
+window.ordenar = function(nombre) {
+    const precio = precios[nombre] || 0;
+    orden.push({ nombre: nombre, precio: precio });
     renderizarOrden();
 };
 
-// Función para eliminar un producto individual
+// Eliminar café individual
 window.eliminarItem = function(index) {
     orden.splice(index, 1);
     renderizarOrden();
 };
 
-// Botón para vaciar toda la orden
+// Vaciar carrito
 if (btnVaciar) {
     btnVaciar.addEventListener('click', () => {
         orden = [];
@@ -54,5 +59,40 @@ if (btnVaciar) {
     });
 }
 
-// Renderizar la orden existente al cargar la página
+// Abrir modal de confirmación
+if (btnAbrirModal) {
+    btnAbrirModal.addEventListener('click', () => {
+        if (orden.length === 0) {
+            alert('Agrega al menos un café del menú antes de confirmar.');
+            return;
+        }
+        const total = orden.reduce((acc, item) => acc + item.precio, 0);
+        if (resumenModalTexto) {
+            resumenModalTexto.textContent = `Has ordenado ${orden.length} producto(s) por un total de $${total.toFixed(2)}. ¡Tu pedido está en preparación!`;
+        }
+        if (modalConfirmar) {
+            modalConfirmar.style.display = 'flex';
+        }
+    });
+}
+
+// Cerrar modal y reiniciar carrito
+if (btnCerrarModal) {
+    btnCerrarModal.addEventListener('click', () => {
+        if (modalConfirmar) modalConfirmar.style.display = 'none';
+        orden = [];
+        renderizarOrden();
+    });
+}
+
+// Cerrar si hace clic fuera del cuadro
+window.addEventListener('click', (e) => {
+    if (modalConfirmar && e.target === modalConfirmar) {
+        modalConfirmar.style.display = 'none';
+        orden = [];
+        renderizarOrden();
+    }
+});
+
+// Render inicial al cargar
 renderizarOrden();

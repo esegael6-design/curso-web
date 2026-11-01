@@ -76,6 +76,7 @@
             <ul id="listaOrden"></ul>
             <p id="totalTexto">Total: $0.00</p>
             <button id="btnVaciar" class="btn-vaciar">Vaciar Orden</button>
+            <button id="btnAbrirModal" class="btn-confirmar">Confirmar Pedido</button>
         </section>
     </main>
 
@@ -84,6 +85,18 @@
         <p>&copy; 2026 Cafetería Aromas. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="app.js"></script>
+        <!-- Ventana Modal de Confirmación -->
+ <div id="modalConfirmar" class="modal-overlay">
+     <div class="modal-box">
+         <h3>¡Gracias por tu compra!</h3>
+         <p id="resumenModalTexto">Tu orden está siendo preparada.</p>
+         <div class="modal-acciones">
+             <button id="btnCerrarModal" class="btn-cerrar">Cerrar</button>
+         </div>
+     </div>
+ </div>
+
+ <script src="app.js"></script>
+
 </body>
 </html>
