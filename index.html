@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafetería Aromas - Café de Especialidad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Encabezado y Navegación -->
+    <header class="navbar">
+        <h1 class="logo">Aromas Café</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección Principal Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>El mejor café artesanal en tu mesa</h2>
+            <p>Granos seleccionados y tostados diariamente para una experiencia única.</p>
+            <a href="#menu" class="btn-hero">Ver Menú</a>
+        </div>
+    </section>
+
+    <!-- Sección de Menú -->
+    <main>
+        <section id="menu" class="seccion-menu">
+            <h2>Nuestras Especialidades</h2>
+            
+            <div class="menu-grid">
+                <!-- Tarjeta 1 -->
+                <div class="producto-card">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=60" alt="Espresso Intenso">
+                    <div class="card-info">
+                        <h3>Espresso Intenso</h3>
+                        <p>Notas achocolatadas con cuerpo denso y crema dorada.</p>
+                        <span class="precio">$45.00</span>
+                        <button class="btn-ordenar" onclick="ordenar('Espresso Intenso')">Ordenar</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="producto-card">
+                    <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=500&auto=format&fit=crop&q=60" alt="Latte Vainilla">
+                    <div class="card-info">
+                        <h3>Latte Vainilla</h3>
+                        <p>Leche vaporizada, café suave y un toque de extracto natural.</p>
+                        <span class="precio">$60.00</span>
+                        <button class="btn-ordenar" onclick="ordenar('Latte Vainilla')">Ordenar</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="producto-card">
+                    <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop&q=60" alt="Capuccino Canela">
+                    <div class="card-info">
+                        <h3>Capuccino Canela</h3>
+                        <p>Espuma aterciopelada espolvoreada con canela de Ceilán.</p>
+                        <span class="precio">$55.00</span>
+                        <button class="btn-ordenar" onclick="ordenar('Capuccino Canela')">Ordenar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Pedidos / Carrito -->
+        <section id="pedidos" class="seccion-pedidos">
+            <h2>Tu Orden Actual</h2>
+            <ul id="listaOrden"></ul>
+            <p id="totalTexto">Total: $0.00</p>
+            <button id="btnVaciar" class="btn-vaciar">Vaciar Orden</button>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2026 Cafetería Aromas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
